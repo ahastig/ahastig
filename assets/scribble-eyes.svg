@@ -1,0 +1,237 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Animated scribble eyes opening</title>
+  <desc id="desc">Flashy black, purple, and blue hand-drawn eyes opening with continuous scribble energy effects.</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#321169"/>
+      <stop offset="34%" stop-color="#13052d"/>
+      <stop offset="100%" stop-color="#020107"/>
+    </radialGradient>
+
+    <linearGradient id="purpleBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9f31ff">
+        <animate attributeName="stop-color" values="#9f31ff;#04d9ff;#4d20ff;#9f31ff" dur="5s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" stop-color="#f3ecff">
+        <animate attributeName="stop-color" values="#f3ecff;#9f31ff;#04d9ff;#f3ecff" dur="4.2s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#04d9ff">
+        <animate attributeName="stop-color" values="#04d9ff;#4d20ff;#9f31ff;#04d9ff" dur="5.5s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.62  0 1 0 0 0.1  0 0 1 0 1  0 0 0 0.9 0" result="hot"/>
+      <feMerge>
+        <feMergeNode in="hot"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="scribbleWarp" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.08" numOctaves="2" seed="9" result="noise">
+        <animate attributeName="baseFrequency" values="0.012 0.06;0.026 0.09;0.015 0.075;0.012 0.06" dur="1.25s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" values="3;9;5;11;4" dur="0.9s" repeatCount="indefinite"/>
+      </feDisplacementMap>
+    </filter>
+
+    <clipPath id="leftEyeClip">
+      <path d="M202 260 C270 128 402 126 488 260 C398 368 282 368 202 260Z"/>
+    </clipPath>
+    <clipPath id="rightEyeClip">
+      <path d="M712 260 C798 126 930 128 998 260 C918 368 802 368 712 260Z"/>
+    </clipPath>
+
+    <style>
+      .bg-pulse {
+        animation: bgPulse 5s ease-in-out infinite;
+      }
+
+      .eye {
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+        animation: openEye 2.55s cubic-bezier(.16, 1, .3, 1) .25s both, eyeFloat 6s ease-in-out 3s infinite;
+      }
+
+      .iris {
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+        animation: irisWake 2.7s cubic-bezier(.16, 1, .3, 1) .35s both, irisPulse 2.6s ease-in-out 3s infinite;
+      }
+
+      .scribble {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 7 13 19 5;
+        animation: crawl 2.4s linear infinite;
+      }
+
+      .fast {
+        animation-duration: 1.1s;
+      }
+
+      .slow {
+        animation-duration: 4.8s;
+      }
+
+      .storm {
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+        animation: spin 13s linear infinite, stormFade 3s ease-out both;
+      }
+
+      .storm.reverse {
+        animation-name: spinReverse, stormFade;
+        animation-duration: 17s, 3s;
+      }
+
+      .slash {
+        opacity: 0;
+        animation: slashFlash 3.6s ease-out infinite;
+      }
+
+      .slash:nth-of-type(2n) {
+        animation-delay: .42s;
+      }
+
+      .slash:nth-of-type(3n) {
+        animation-delay: .88s;
+      }
+
+      .scanline {
+        animation: scan 3.2s linear infinite;
+      }
+
+      @keyframes openEye {
+        0% { transform: scaleY(.035); opacity: .2; }
+        24% { transform: scaleY(.035); opacity: .45; }
+        54% { transform: scaleY(1.2); opacity: 1; }
+        70% { transform: scaleY(.82); }
+        100% { transform: scaleY(1); opacity: 1; }
+      }
+
+      @keyframes eyeFloat {
+        0%, 100% { transform: translateY(0) scaleY(1); }
+        50% { transform: translateY(-7px) scaleY(.97); }
+      }
+
+      @keyframes irisWake {
+        0%, 42% { transform: scale(.08) rotate(-45deg); opacity: 0; }
+        66% { transform: scale(1.18) rotate(8deg); opacity: 1; }
+        100% { transform: scale(1) rotate(0); opacity: 1; }
+      }
+
+      @keyframes irisPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.07); }
+      }
+
+      @keyframes crawl {
+        to { stroke-dashoffset: -96; }
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes spinReverse {
+        to { transform: rotate(-360deg); }
+      }
+
+      @keyframes stormFade {
+        0%, 45% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      @keyframes slashFlash {
+        0%, 55%, 100% { opacity: 0; }
+        62% { opacity: .75; }
+        76% { opacity: .08; }
+      }
+
+      @keyframes bgPulse {
+        0%, 100% { opacity: .82; }
+        50% { opacity: 1; }
+      }
+
+      @keyframes scan {
+        to { transform: translateY(42px); }
+      }
+    </style>
+  </defs>
+
+  <rect width="1200" height="520" fill="#020107"/>
+  <rect class="bg-pulse" width="1200" height="520" fill="url(#bgGlow)"/>
+  <ellipse cx="600" cy="258" rx="520" ry="215" fill="none" stroke="#2f0a66" stroke-width="42" opacity=".16"/>
+  <ellipse cx="600" cy="258" rx="450" ry="174" fill="none" stroke="#04d9ff" stroke-width="1.4" stroke-dasharray="5 18" opacity=".36"/>
+  <ellipse cx="600" cy="258" rx="380" ry="142" fill="none" stroke="#9f31ff" stroke-width="1.8" stroke-dasharray="2 15" opacity=".42"/>
+
+  <g opacity=".38" filter="url(#glow)">
+    <path class="scribble storm" d="M137 260 C220 94 355 73 458 187 S690 415 850 332 1040 121 1110 260" stroke="#4d20ff" stroke-width="2.5"/>
+    <path class="scribble storm reverse" d="M68 332 C185 390 284 324 376 240 S610 104 726 198 910 402 1115 326" stroke="#04d9ff" stroke-width="2"/>
+    <path class="scribble storm slow" d="M180 108 C335 238 492 102 602 216 S842 381 1028 132" stroke="#9f31ff" stroke-width="1.8"/>
+  </g>
+
+  <g class="slash" filter="url(#glow)">
+    <path class="scribble fast" d="M90 103 L228 78 L328 116 L438 86" stroke="#04d9ff" stroke-width="3.2"/>
+    <path class="scribble fast" d="M762 95 L880 70 L1008 114 L1135 82" stroke="#9f31ff" stroke-width="3"/>
+  </g>
+  <g class="slash" filter="url(#glow)">
+    <path class="scribble fast" d="M126 421 L276 392 L426 430 L535 401" stroke="#9f31ff" stroke-width="2.8"/>
+    <path class="scribble fast" d="M715 410 L820 386 L964 422 L1106 390" stroke="#04d9ff" stroke-width="2.8"/>
+  </g>
+
+  <g filter="url(#scribbleWarp)">
+    <g class="eye">
+      <path d="M202 260 C270 128 402 126 488 260 C398 368 282 368 202 260Z" fill="#080112" opacity=".72"/>
+      <path class="scribble" d="M202 260 C270 128 402 126 488 260 C398 368 282 368 202 260Z" stroke="#f3ecff" stroke-width="7" filter="url(#glow)"/>
+      <path class="scribble fast" d="M194 256 C281 142 384 106 496 255" stroke="#9f31ff" stroke-width="4"/>
+      <path class="scribble slow" d="M210 265 C291 350 389 358 486 258" stroke="#04d9ff" stroke-width="3.5"/>
+      <path class="scribble" d="M234 220 C262 173 320 143 376 154 C415 160 453 196 474 238" stroke="#6b22ff" stroke-width="2.5" opacity=".88"/>
+
+      <g clip-path="url(#leftEyeClip)">
+        <circle class="iris" cx="346" cy="260" r="72" fill="none" stroke="url(#purpleBlue)" stroke-width="10" filter="url(#glow)"/>
+        <circle class="iris" cx="346" cy="260" r="47" fill="none" stroke="#04d9ff" stroke-width="3" stroke-dasharray="4 9"/>
+        <circle class="iris" cx="346" cy="260" r="26" fill="#020107" stroke="#f3ecff" stroke-width="2"/>
+        <path class="scribble fast" d="M346 188 L356 334 M283 217 L409 302 M278 276 L418 242 M310 323 L389 197" stroke="#f3ecff" stroke-width="2" opacity=".54"/>
+      </g>
+
+      <path class="scribble fast" d="M245 199 L218 150 M287 168 L271 108 M334 154 L334 93 M383 160 L402 104 M430 196 L468 144" stroke="#9f31ff" stroke-width="3.4"/>
+    </g>
+
+    <g class="eye">
+      <path d="M712 260 C798 126 930 128 998 260 C918 368 802 368 712 260Z" fill="#080112" opacity=".72"/>
+      <path class="scribble" d="M712 260 C798 126 930 128 998 260 C918 368 802 368 712 260Z" stroke="#f3ecff" stroke-width="7" filter="url(#glow)"/>
+      <path class="scribble fast" d="M704 255 C816 106 919 142 1006 256" stroke="#04d9ff" stroke-width="4"/>
+      <path class="scribble slow" d="M714 258 C811 358 909 350 990 265" stroke="#9f31ff" stroke-width="3.5"/>
+      <path class="scribble" d="M734 238 C755 196 793 160 832 154 C888 143 946 173 974 220" stroke="#6b22ff" stroke-width="2.5" opacity=".88"/>
+
+      <g clip-path="url(#rightEyeClip)">
+        <circle class="iris" cx="854" cy="260" r="72" fill="none" stroke="url(#purpleBlue)" stroke-width="10" filter="url(#glow)"/>
+        <circle class="iris" cx="854" cy="260" r="47" fill="none" stroke="#9f31ff" stroke-width="3" stroke-dasharray="4 9"/>
+        <circle class="iris" cx="854" cy="260" r="26" fill="#020107" stroke="#f3ecff" stroke-width="2"/>
+        <path class="scribble fast" d="M854 188 L844 334 M791 217 L917 302 M786 242 L926 276 M810 197 L889 323" stroke="#f3ecff" stroke-width="2" opacity=".54"/>
+      </g>
+
+      <path class="scribble fast" d="M755 196 L717 144 M802 160 L783 104 M851 154 L851 93 M897 168 L913 108 M955 199 L982 150" stroke="#04d9ff" stroke-width="3.4"/>
+    </g>
+  </g>
+
+  <g opacity=".88" filter="url(#glow)">
+    <path class="scribble storm" d="M393 260 C460 226 520 223 600 260 S740 294 807 260" stroke="#f3ecff" stroke-width="1.6"/>
+    <path class="scribble storm reverse" d="M360 305 C470 352 730 352 840 305" stroke="#9f31ff" stroke-width="1.5"/>
+    <path class="scribble storm slow" d="M356 214 C480 142 720 142 844 214" stroke="#04d9ff" stroke-width="1.5"/>
+  </g>
+
+  <g opacity=".16">
+    <rect class="scanline" x="0" y="-42" width="1200" height="10" fill="#f3ecff"/>
+    <rect class="scanline" x="0" y="-18" width="1200" height="4" fill="#04d9ff"/>
+  </g>
+
+  <text x="600" y="470" text-anchor="middle" fill="url(#purpleBlue)" font-family="Arial Black, Impact, sans-serif" font-size="42" letter-spacing="9" opacity=".95" filter="url(#glow)">SCRIBBLE MODE</text>
+  <text x="600" y="500" text-anchor="middle" fill="#f3ecff" font-family="Arial, sans-serif" font-size="13" letter-spacing="6" opacity=".62">BLACK / PURPLE / BLUE</text>
+</svg>
