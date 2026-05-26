@@ -1,4 +1,8 @@
-## Hi there 👋
+## Scribble Eyes Awakening
+
+A flashy, stylized browser animation with hand-drawn scribble eyes opening into ongoing black, purple, and blue screen effects.
+
+Open `index.html` in a browser to view the animation.
 
 <!--
 **ahastig/ahastig** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
